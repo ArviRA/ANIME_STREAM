@@ -1,7 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
 from flask import Flask,request
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/get_frame',methods = ['GET','POST'])
 def get_link():
@@ -38,6 +41,7 @@ def get_list():
             dummy_dic['picture'] = pic_link
             dummy_dic['descripton'] = description
             dummy_dic['date'] = date
+            dummy_dic["href"] = dummy[i].find('a').get('href')
             send[str(name)] = dummy_dic
         return {'status':200,'result':send}
     except:

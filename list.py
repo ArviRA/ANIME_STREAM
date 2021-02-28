@@ -9,6 +9,7 @@ soup = BeautifulSoup(raw_link.content,"html.parser")
 
 dummy =soup.find_all('li',{'class':'video-block'})
 for i in range(0,len(dummy)):
+    
     picture = dummy[i].find('div',{'class':'picture'})
     picture = picture.find('img')
     description = picture.get('alt')
@@ -19,6 +20,7 @@ for i in range(0,len(dummy)):
     dummy_dic['picture'] = pic_link
     dummy_dic['descripton'] = description
     dummy_dic['date'] = date
+    dummy_dic["href"] = dummy[i].find('a').get('href')
     send[str(name)] = dummy_dic
 
 print(send)
