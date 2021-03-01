@@ -33,6 +33,7 @@ def get_link():
             list_dict[str(name)] = dummy_dict
         #print(list_dict)
         src = soup.find_all('iframe')
+        cut_this = str(src[0]['src'])
         send['frame_link']= "http:"+str(src[0]['src']).split('&')[0]
         details = soup.find("div",{'class':'video-details'})
         epi_name = details.find('span',{'class':'date'}).text.strip()
