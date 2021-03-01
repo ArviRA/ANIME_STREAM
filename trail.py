@@ -34,13 +34,16 @@ def get_link():
         #print(list_dict)
         src = soup.find_all('iframe')
         cut_this = str(src[0]['src'])
+        mp4 = cut_this[2:].replace("streaming","ajax")
+        mp4 = mp4+"&refer="+raw_link
+        print(mp4)
         send['frame_link']= "http:"+str(src[0]['src']).split('&')[0]
         details = soup.find("div",{'class':'video-details'})
         epi_name = details.find('span',{'class':'date'}).text.strip()
         epi_description = details.find('div',{'class':'content-more-js'}).text.strip()
         send['episode_name'] = epi_name
         send['episode_description'] = epi_description
-        return {'status':200,'in_this_frame':send,'below_episodes':list_dict}
+        return {'status':200,'in_this_frame':send,'below_episodes':list_dict,"mp4":mp4}
     except:
         return {'status':404}
 
