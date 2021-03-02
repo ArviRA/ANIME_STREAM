@@ -11,8 +11,11 @@ def get_cover(name):
         #print(cover)
         return cover
     else:
-        result = requests.get('https://wall.alphacoders.com/search.php?search={}'.format(name))
-        soup = BeautifulSoup(result.content,'html.parser')
+        try:
+            result = requests.get('https://wall.alphacoders.com/search.php?search={}'.format(name))
+            soup = BeautifulSoup(result.content,'html.parser')
         #print(soup.find_all('div',{'class':'boxgrid'})[0].find('img').get('src'))
         #print(soup.prettify())
-        return soup.find_all('div',{'class':'boxgrid'})[0].find('img').get('src')
+            return soup.find_all('div',{'class':'boxgrid'})[0].find('img').get('src')
+        except:
+            return 404
