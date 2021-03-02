@@ -16,7 +16,8 @@ def get_link():
         raw_link = link['raw_link']
         link = requests.get(raw_link)
         soup = BeautifulSoup(link.content,"html.parser")
-        dummy =soup.find_all('li',{'class':'video-block'})
+        ul = soup.find_all('ul',{'class':'listing items lists'})
+        dummy = ul[0].find_all('li',{'class':'video-block'})
         for i in range(0,len(dummy)):
             dummy_dict = {}
             picture = dummy[i].find('div',{'class':"picture"})
@@ -56,7 +57,7 @@ def get_list():
         send = {}
         raw_link = requests.get(raw)
         soup = BeautifulSoup(raw_link.content,"html.parser")
-        dummy =soup.find_all('li',{'class':'video-block'})
+        dummy = soup.find_all('li',{'class':'video-block'})
         for i in range(0,len(dummy)):
             picture = dummy[i].find('div',{'class':'picture'})
             picture = picture.find('img')
