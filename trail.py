@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 from flask import Flask,request
 from flask_cors import CORS
+import images 
 
 app = Flask(__name__)
 CORS(app)
@@ -72,12 +73,23 @@ def get_link():
         mp4 = mp4+"&refer="+raw_link
         print(mp4)
         send['frame_link']= "http:"+str(src[0]['src']).split('&')[0]
+        print(cut_this.split('&')[1].split('+%')[0].split('=')[1].replace('+','-').replace('%3A',''))
+        #print(cut_this.split('&')[1].split('+%')[0])
         details = soup.find("div",{'class':'video-details'})
         epi_name = details.find('span',{'class':'date'}).text.strip()
         epi_description = details.find('div',{'class':'content-more-js'}).text.strip()
         send['episode_name'] = epi_name
-        send['episode_description'] = epi_description
-        return {'status':200,'in_this_frame':send,'below_episodes':list_dict,"mp4":mp4}
+        send['epi_description'] = epi_description
+        name = cut_this.split('&')[1].split('+%')[0].split('=')[1].replace('+','-').replace('%3A','')
+        if len(name.split('-')) >=3:
+            search_name  = name.split('-')[:2]
+            separator = '-'
+            name = separator.join(search_name)
+        print("after:",name.lower())
+        cover = images.get_cover(name.lower())
+        print("cover",cover)
+        
+        return {'status':200,'in_this_frame':send,'below_episodes':list_dict,"mp4":mp4,'cover_pic':cover}
     except:
         return {'status':404}
 
