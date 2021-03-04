@@ -1,3 +1,6 @@
+import os
+import sys
+import time
 from bs4 import BeautifulSoup
 import requests
 from flask import Flask,request
@@ -120,10 +123,6 @@ def get_list():
     except:
         return {'status':404}
         
-
-
-
-
 if __name__ == '__main__':
-   app.run(debug = True)
+   app.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)),debug=True,use_reloader=True)
     
