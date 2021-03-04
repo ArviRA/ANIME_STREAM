@@ -19,3 +19,5 @@ def get_cover(name):
             return soup.find_all('div',{'class':'boxgrid'})[0].find('img').get('src')
         except:
             return 404
+
+print(get_cover('onepunchman'))

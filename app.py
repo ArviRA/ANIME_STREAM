@@ -84,10 +84,10 @@ def get_link():
         send['episode_name'] = epi_name
         send['epi_description'] = epi_description
         name = cut_this.split('&')[1].split('+%')[0].split('=')[1].replace('+','-').replace('%3A','')
-        if len(name.split('-')) >=3:
-            search_name  = name.split('-')[:2]
+        """if len(name.split('-')) >=3:
+            search_name  = name.split('-')[:3]
             separator = '-'
-            name = separator.join(search_name)
+            name = separator.join(search_name)"""
         print("after:",name.lower())
         cover = images.get_cover(name.lower())
         print("cover",cover)
