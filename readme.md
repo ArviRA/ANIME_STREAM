@@ -29,6 +29,10 @@ What makes our app standout!
 
 </div>
 
+# Apk Download 🔗
+ ## [Anime Fox](https://github.com/ArviRA/ANIME_STREAM/blob/master/APK/Anime_fox.apk?raw=true)
+
+
 # Prerequisites
 Make sure you have knowledge about Flask. Follow the [official documentation](https://flask-doc.readthedocs.io/en/latest/).
 * flask
